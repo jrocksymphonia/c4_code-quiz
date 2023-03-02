@@ -44,26 +44,31 @@ function startTimer() {
 
 function question1() {
     //question 1 is appended here 
-    var question1 = document.createElement("div");
+    var question1 = document.createElement("section");
+
     var q1Title = document.createElement("h2");
-    
+    var answers = document.createElement("div");
+
     var answer1 = document.createElement("button");
     var answer2 = document.createElement("button");
     var answer3 = document.createElement("button");
     var answer4 = document.createElement("button");
 
+    //text component of the page
     q1Title.textContent = "Commonly used data types DO NOT include:";
     answer1.textContent = "1. strings";
     answer2.textContent = "2. booleans";
-    answer3.textContent = "3. alerts";
+    answer3.textContent = "3. alerts";//this is the right answer
     answer4.textContent = "4. numbers";
 
+    //document.body.main.section.div
     document.body.children[1].appendChild(question1);
     document.body.children[1].children[0].appendChild(q1Title);
-    document.body.children[1].children[0].appendChild(answer1);
-    document.body.children[1].children[0].appendChild(answer2);
-    document.body.children[1].children[0].appendChild(answer3);
-    document.body.children[1].children[0].appendChild(answer4);
+    document.body.children[1].children[0].appendChild(answers);
+    document.body.children[1].children[0].children[1].appendChild(answer1);
+    document.body.children[1].children[0].children[1].appendChild(answer2);
+    document.body.children[1].children[0].children[1].appendChild(answer3);
+    document.body.children[1].children[0].children[1].appendChild(answer4);
 
 
 

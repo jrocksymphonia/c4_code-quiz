@@ -11,3 +11,8 @@ main {
 ol li {
     text-align: left;
 }
+
+button {
+    background-color: purple;
+    color: white;
+}
