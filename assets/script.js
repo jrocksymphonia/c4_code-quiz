@@ -1,7 +1,10 @@
-var mainPage = document.querySelector('#main-page');
-var startQuizButton = document.querySelector('#start-quiz');
+var timer = document.querySelector(".timer");
+var mainPage = document.querySelector("#main-page");
+var mainElement = document.querySelector("main");
+var startQuizButton = document.querySelector("#start-quiz");
 
-
+timer.setAttribute("style", "float: right");
+mainElement.setAttribute("style", "text-align: center")
 
 startQuizButton.addEventListener("click", function(event){
     event.preventDefault();
