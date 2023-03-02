@@ -12,13 +12,9 @@ startQuizButton.addEventListener("click", function(event){
     //starting page is removed
     startingPage.remove();
 
-    //question 1 is appended here 
-    var question1 = document.createElement("div");
-    question1.textContent = "TESTERRRRRRRR";
-    document.body.children[1].appendChild(question1);
-
     //timer starts @75 seconds
     startTimer();
+    question1();
 
 })
 
@@ -46,7 +42,30 @@ function startTimer() {
     }, 1000);
 }
 
-function startQuiz() {
+function question1() {
+    //question 1 is appended here 
+    var question1 = document.createElement("div");
+    var q1Title = document.createElement("h2");
+    
+    var answer1 = document.createElement("button");
+    var answer2 = document.createElement("button");
+    var answer3 = document.createElement("button");
+    var answer4 = document.createElement("button");
+
+    q1Title.textContent = "Commonly used data types DO NOT include:";
+    answer1.textContent = "1. strings";
+    answer2.textContent = "2. booleans";
+    answer3.textContent = "3. alerts";
+    answer4.textContent = "4. numbers";
+
+    document.body.children[1].appendChild(question1);
+    document.body.children[1].children[0].appendChild(q1Title);
+    document.body.children[1].children[0].appendChild(answer1);
+    document.body.children[1].children[0].appendChild(answer2);
+    document.body.children[1].children[0].appendChild(answer3);
+    document.body.children[1].children[0].appendChild(answer4);
+
+
 
 }
 
