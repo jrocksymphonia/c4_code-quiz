@@ -15,4 +15,7 @@ ol li {
 button {
     background-color: purple;
     color: white;
+    width: 200px;
+    height: 50px;
+    font-size: 18px;
 }
