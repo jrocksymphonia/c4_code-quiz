@@ -46,9 +46,6 @@ var highscores = {
 }
 
 
-
-// timer.setAttribute("style", "float: right;");
-
 startQuizButton.addEventListener("click", function(event){
     event.preventDefault();
 
@@ -85,96 +82,240 @@ function startTimer() {
     }, 1000);
 }
 
+
+
+
 function question1() {
 
     // Get the current question object from the above array. 
     var currentQuestion = questions[0];
 
-    // Update the dom with the question
+    //update the DOM by making and appending the elements
     var question1 = document.createElement("section");
 
-    var q1Title = document.createElement("h2");
+    var qTitle = document.createElement("h2");
     var answers = document.createElement("div");
 
-    //current question text
-    q1Title.textContent = currentQuestion["title"];
+    qTitle.textContent = currentQuestion["title"];
 
-    //update the DOM by appending the elements
-    document.body.children[1].appendChild(question1);
-    document.body.children[1].children[0].appendChild(q1Title);
+    mainElement.appendChild(question1);
+    question1.appendChild(qTitle);
+    question1.appendChild(answers);
+
+    // Loop over the choices in the current question:
+    for (var i = 0; i < currentQuestion["choices"].length; i++){
+        //enters question buttons into the DOM
+        var currentChoices = document.createElement("button");
+        currentChoices.textContent = currentQuestion.choices[i];
+        currentChoices.setAttribute("value", currentQuestion.choices[i]);
+        answers.appendChild(currentChoices);
+
+        
+        //makes the 4 buttons work to go to the next question and show the right/wrong answer
+        currentChoices.addEventListener("click", function (event){
+            event.preventDefault();
+        
+            console.log(event.target.value);
+        
+            // //call next question with right or wrong answer
+            if (event.target.value === currentQuestion["answer"]) {
+                console.log("Correct!");
+
+        
+            }else {
+                console.log("wrong!");
+            }
+        
+            // question 1 is removed
+            question1.remove();
+        
+            //call the next question
+            question2();
+        
+        });
+
+    }
+    
+}
+
+function selectAnswer(event){
+    event.preventDefault();
+
+    console.log(event.target);
+
+    // //call next question with right or wrong answer
+    // //bug: for some reason all the questions are coming out as wrong rather than one correct one
+    // if (currentChoices.textContent === currentQuestion["answer"]) {
+    //     console.log("Correct!")
+
+    // }else {
+    //     console.log("wrong!")
+    // }
+
+    //question 1 is removed
+    // question1.remove();
+
+    // //call the next question
+    // question2();
+
+}
+
+
+
+
+
+function question2() {
+    // Get the current question object from the above array. 
+    var currentQuestion = questions[1];
+
+    var question2 = document.createElement("section");
+
+    var qTitle = document.createElement("h2");
+    var answers = document.createElement("div");
+
+    qTitle.textContent = currentQuestion["title"];
+
+    document.body.children[1].appendChild(question2);
+    document.body.children[1].children[0].appendChild(qTitle);
     document.body.children[1].children[0].appendChild(answers);
 
-    // TODO: Loop over the choices in the current question:
-    for (var i = 0; i < currentQuestion["choices"].length; i++){
+       for (var i = 0; i < currentQuestion["choices"].length; i++){
         //enters question buttons into the DOM
         var currentChoices = document.createElement("button");
         currentChoices.textContent = currentQuestion.choices[i];
         document.body.children[1].children[0].children[1].appendChild(currentChoices);
 
-        //makes the 4 buttons work to go to the next question and show the right/wrong answer
         currentChoices.addEventListener("click", function(event){
             event.preventDefault();
+
+            //question 2 is removed
+            question2.remove();
+
+            //call the next question
+            question3();
         
-            //question 1 is removed
-            question1.remove();
-        
-            question2();
-    
-            //call next question with right or wrong answer
-            //bug: for some reason all the questions are coming out as wrong rather than one correct one
             if (currentChoices === currentQuestion["answer"]) {
                 console.log("Correct!")
-    
             }else {
                 console.log("wrong!")
             }
-            //bug: currentChoices only logs as "4. button" instead of the whole array
-            console.log(currentChoices)
-            console.log(currentQuestion["answer"])
         });
     }
+}
+
+// function question3() {
+//     // Get the current question object from the above array. 
+//     var currentQuestion = questions[2];
+
+//     var question3 = document.createElement("section");
+
+//     var qTitle = document.createElement("h2");
+//     var answers = document.createElement("div");
+
+//     qTitle.textContent = currentQuestion["title"];
+
+//     document.body.children[1].appendChild(question3);
+//     document.body.children[1].children[0].appendChild(qTitle);
+//     document.body.children[1].children[0].appendChild(answers);
+
+//        for (var i = 0; i < currentQuestion["choices"].length; i++){
+//         //enters question buttons into the DOM
+//         var currentChoices = document.createElement("button");
+//         currentChoices.textContent = currentQuestion.choices[i];
+//         document.body.children[1].children[0].children[1].appendChild(currentChoices);
+
+//         currentChoices.addEventListener("click", function(event){
+//             event.preventDefault();
+        
+//             //question 3 is removed
+//             question3.remove();
+
+//             //call the next question
+//             question4();
     
+//             if (currentChoices === currentQuestion["answer"]) {
+//                 console.log("Correct!")
+//             }else {
+//                 console.log("wrong!")
+//             }
+//         });
+//     }
+// }
+
+// function question4() {
+//     // Get the current question object from the above array. 
+//     var currentQuestion = questions[3];
+
+//     var question4 = document.createElement("section");
+
+//     var qTitle = document.createElement("h2");
+//     var answers = document.createElement("div");
+
+//     qTitle.textContent = currentQuestion["title"];
+
+//     document.body.children[1].appendChild(question4);
+//     document.body.children[1].children[0].appendChild(qTitle);
+//     document.body.children[1].children[0].appendChild(answers);
+
+//        for (var i = 0; i < currentQuestion["choices"].length; i++){
+//         //enters question buttons into the DOM
+//         var currentChoices = document.createElement("button");
+//         currentChoices.textContent = currentQuestion.choices[i];
+//         document.body.children[1].children[0].children[1].appendChild(currentChoices);
+
+//         currentChoices.addEventListener("click", function(event){
+//             event.preventDefault();
+        
+//             //question 4 is removed
+//             question4.remove();
+
+//             //call the next question
+//             question5();
+        
     
+//             if (currentChoices === currentQuestion["answer"]) {
+//                 console.log("Correct!")
+//             }else {
+//                 console.log("wrong!")
+//             }
+//         });
+//     }
+// }
 
-}
+// function question5() {
+//     // Get the current question object from the above array. 
+//     var currentQuestion = questions[4];
 
-function question2() {
-    //question 2 is appended here 
-    var question1 = document.createElement("section");
+//     var question5 = document.createElement("section");
 
-    var q1Title = document.createElement("h2");
-    var answers = document.createElement("div");
+//     var qTitle = document.createElement("h2");
+//     var answers = document.createElement("div");
 
-    var answer1 = document.createElement("button");
-    var answer2 = document.createElement("button");
-    var answer3 = document.createElement("button");
-    var answer4 = document.createElement("button");
+//     qTitle.textContent = currentQuestion["title"];
 
-    //text component of the page
-    q1Title.textContent = "The condition in an if / else statement is enclosed within___.";
-    answer1.textContent = "1. quotes";
-    answer2.textContent = "2. curly brackets";//this is the right answer
-    answer3.textContent = "3. parentheses";
-    answer4.textContent = "4. square brackets";
+//     document.body.children[1].appendChild(question5);
+//     document.body.children[1].children[0].appendChild(qTitle);
+//     document.body.children[1].children[0].appendChild(answers);
 
-    //document.body.main.section.div
-    document.body.children[1].appendChild(question1);
-    document.body.children[1].children[0].appendChild(q1Title);
-    document.body.children[1].children[0].appendChild(answers);
-    document.body.children[1].children[0].children[1].appendChild(answer1);
-    document.body.children[1].children[0].children[1].appendChild(answer2);
-    document.body.children[1].children[0].children[1].appendChild(answer3);
-    document.body.children[1].children[0].children[1].appendChild(answer4);
+//        for (var i = 0; i < currentQuestion["choices"].length; i++){
+//         //enters question buttons into the DOM
+//         var currentChoices = document.createElement("button");
+//         currentChoices.textContent = currentQuestion.choices[i];
+//         document.body.children[1].children[0].children[1].appendChild(currentChoices);
 
-   //call next question with right or wrong answer
+//         currentChoices.addEventListener("click", function(event){
+//             event.preventDefault();
+        
+//             //question 5 is removed
+//             question5.remove();
 
-
-}
-
-
-
-function answers() {
-
-    // if ()
-
-}
+//             //calls the test being over
+        
+//             if (currentChoices === currentQuestion["answer"]) {
+//                 console.log("Correct!")
+//             }else {
+//                 console.log("wrong!")
+//             }
+//         });
+//     }
+// }
