@@ -33,6 +33,18 @@ var questions = [
     }
 ];
 
+var testOver = {
+    title: "All done!",
+    message: "Your final score is " + "",
+    enterInitials: "Enter initials: ",
+};
+
+var highscores = {
+    title: "Highscores",
+    entries: "",
+    buttons: ["Go Back", "Clear Highscores"],
+}
+
 
 
 // timer.setAttribute("style", "float: right;");
@@ -75,48 +87,54 @@ function startTimer() {
 
 function question1() {
 
-    // TODO:
-    // get the current question object from the above array. 
-    var currentQuestion;
+    // Get the current question object from the above array. 
+    var currentQuestion = questions[0];
 
-
-    //  TODO: update the dom with the question
-
-
-    // TODO: Loop over the choices in the current question:
-    
-    //question 1 is appended here 
+    // Update the dom with the question
     var question1 = document.createElement("section");
 
     var q1Title = document.createElement("h2");
     var answers = document.createElement("div");
 
-    //forloop this
-    var answer1 = document.createElement("button");
-    var answer2 = document.createElement("button");
-    var answer3 = document.createElement("button");
-    var answer4 = document.createElement("button");
+    //current question text
+    q1Title.textContent = currentQuestion["title"];
 
-
-
-    //text component of the page
-    q1Title.textContent = "Commonly used data types DO NOT include:";
-    answer1.textContent = "1. strings";
-    answer2.textContent = "2. booleans";
-    answer3.textContent = "3. alerts";//this is the right answer
-    answer4.textContent = "4. numbers";
-
-    //document.body.main.section.div
+    //update the DOM by appending the elements
     document.body.children[1].appendChild(question1);
     document.body.children[1].children[0].appendChild(q1Title);
     document.body.children[1].children[0].appendChild(answers);
-    document.body.children[1].children[0].children[1].appendChild(answer1);
-    document.body.children[1].children[0].children[1].appendChild(answer2);
-    document.body.children[1].children[0].children[1].appendChild(answer3);
-    document.body.children[1].children[0].children[1].appendChild(answer4);
 
-   //call next question with right or wrong answer
+    // TODO: Loop over the choices in the current question:
+    for (var i = 0; i < currentQuestion["choices"].length; i++){
+        //enters question buttons into the DOM
+        var currentChoices = document.createElement("button");
+        currentChoices.textContent = currentQuestion.choices[i];
+        document.body.children[1].children[0].children[1].appendChild(currentChoices);
 
+        //makes the 4 buttons work to go to the next question and show the right/wrong answer
+        currentChoices.addEventListener("click", function(event){
+            event.preventDefault();
+        
+            //question 1 is removed
+            question1.remove();
+        
+            question2();
+    
+            //call next question with right or wrong answer
+            //bug: for some reason all the questions are coming out as wrong rather than one correct one
+            if (currentChoices === currentQuestion["answer"]) {
+                console.log("Correct!")
+    
+            }else {
+                console.log("wrong!")
+            }
+            //bug: currentChoices only logs as "4. button" instead of the whole array
+            console.log(currentChoices)
+            console.log(currentQuestion["answer"])
+        });
+    }
+    
+    
 
 }
 
