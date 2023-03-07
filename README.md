@@ -2,11 +2,13 @@
 Making a code quiz from scratch for bootcamp users to use to study and track their scores
 
 ## Description
-This project is intended to help my client create a strong password using the criteria given that they enter a character length between 8-128 characters and their choice of having lowercase, uppercase, numbers, and special characters. 
+This project is intended to help bootcamp students to review the javascript material they learned. The beauty of this timed quiz is that they can save their answers. That way the next time they decide to take the quiz again, they can compair their new scores to their old ones. 
 
 ## Installation
 
 N/A
+
+## Usage
 
 ## Credits
 Links used:
