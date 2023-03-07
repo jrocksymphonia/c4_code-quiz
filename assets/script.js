@@ -2,6 +2,7 @@ var timer = document.querySelector(".timer");
 var secondsLeft = 75;
 var startingPage = document.querySelector("#main-page");
 var mainElement = document.querySelector("main");
+var headerElement = document.querySelector("header");
 var startQuizButton = document.querySelector("#start-quiz");
 
 
@@ -35,7 +36,7 @@ var questions = [
 
 var testOver = {
     title: "All done!",
-    message: "Your final score is " + "",
+    message: "Your final score is " + "" + ".",
     enterInitials: "Enter initials: ",
 };
 
@@ -64,20 +65,20 @@ function startTimer() {
       secondsLeft--;
       timer.textContent = "Time: " + secondsLeft;
   
-    //   if (secondsLeft >= 0) {
+    //   if (secondsLeft > 0) {
     //     // Tests if win condition is met
-    //     if (isWin && timerCount > 0) {
     //       // Clears interval and stops timer
     //       clearInterval(timerInterval);
-    //       winGame();
     //     }
-    //   }
-    //   // Tests if time has run out
-    //   if (secondsLeft === 0) {
-    //     // Clears interval
-    //     clearInterval(timerInterval);
-    //     loseGame();
-    //   }
+
+        // If time has run out, go straight to yourResults
+        if (secondsLeft === 0) {
+            // Clears interval
+            clearInterval(timerInterval);
+            //gotta remove the current question here 
+            yourResults();
+        }
+      
   
     }, 1000);
 }
@@ -307,6 +308,7 @@ function question5() {
     // Get the current question object from the above array. 
     var currentQuestion = questions[4];
 
+    //update the DOM by making and appending the elements
     var question5 = document.createElement("section");
 
     var qTitle = document.createElement("h2");
@@ -351,6 +353,70 @@ function question5() {
             // result.remove();
 
             //calls the test being over
+            yourResults()
         });
     }
+}
+
+function yourResults() {
+    var results = testOver;
+
+    //update the DOM by making and appending the elements
+    var finalScore = document.createElement("section");
+
+    var title = document.createElement("h2");
+    var message = document.createElement("p");
+    var saveScore = document.createElement("form");
+    var initials = document.createElement("label");
+    var textbox = document.createElement("input");
+    var submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+
+    title.textContent = results["title"];
+    message.textContent = results["message"];
+    initials.textContent = results["enterInitials"];
+    submit.textContent = "Submit";
+
+    mainElement.appendChild(finalScore);
+    finalScore.appendChild(title);
+    finalScore.appendChild(message);
+    finalScore.appendChild(saveScore);
+    saveScore.appendChild(initials);
+    saveScore.appendChild(textbox);
+    saveScore.appendChild(submit);
+
+    submit.addEventListener("click", function (event){
+        event.preventDefault();
+    
+        
+
+        //question 5 is removed
+        finalScore.remove();
+        headerElement.remove();
+        // result.remove();
+
+        //calls the test being over
+        highScores()
+    });
+
+}
+
+function highScores() {
+    var highScoreLog = document.createElement("section");
+
+    var title = document.createElement("h1");
+    var goBack = document.createElement("input");
+    goBack.setAttribute("type", "submit");
+    var clearHighscores = document.createElement("input");
+    clearHighscores.setAttribute("type", "submit");
+
+    title.textContent = highscores["title"];
+    goBack.textContent = highscores.buttons[0];
+    clearHighscores.textContent = highscores.buttons[1];
+
+    mainElement.appendChild(highScoreLog);
+
+
+
+
 }
