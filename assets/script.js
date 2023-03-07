@@ -4,6 +4,8 @@ var startingPage = document.querySelector("#main-page");
 var mainElement = document.querySelector("main");
 var headerElement = document.querySelector("header");
 var startQuizButton = document.querySelector("#start-quiz");
+var yourScore;
+var allDone = false;
 
 //array of objects that represent all the questions in the quiz
 var questions = [
@@ -36,7 +38,7 @@ var questions = [
 
 var testOver = {
     title: "All done!",
-    message: "Your final score is " + "" + ".",
+    message: "Your final score is " + yourScore + ".",
     enterInitials: "Enter initials: ",
 };
 
@@ -65,11 +67,13 @@ function startTimer() {
       secondsLeft--;
       timer.textContent = "Time: " + secondsLeft;
   
-    //   if (secondsLeft > 0) {
-    //     // Tests if win condition is met
-    //       // Clears interval and stops timer
-    //       clearInterval(timerInterval);
-    //     }
+      if (secondsLeft >= 0) {
+        // Tests if win condition is met
+        if (!yourResults && secondsLeft > 0) {
+            // Clears interval and stops timer
+            clearInterval(timerInterval);
+        }
+      }
 
         // If time has run out, go straight to yourResults
         if (secondsLeft === 0) {
@@ -115,8 +119,6 @@ function question1() {
         //makes the 4 buttons work to go to the next question and show the right/wrong answer
         currentChoices.addEventListener("click", function (event){
             event.preventDefault();
-        
-            console.log(event.target.value);
         
             //call next question with right or wrong answer
             if (event.target.value === currentQuestion["answer"]) {
@@ -173,8 +175,6 @@ function question2() {
         currentChoices.addEventListener("click", function (event){
             event.preventDefault();
         
-            console.log(event.target.value);
-        
             //call next question with right or wrong answer
             if (event.target.value === currentQuestion["answer"]) {
                 var result = document.createElement("h3");
@@ -225,8 +225,6 @@ function question3() {
         currentChoices.addEventListener("click", function (event){
             event.preventDefault();
         
-            console.log(event.target.value);
-        
             //call next question with right or wrong answer
             if (event.target.value === currentQuestion["answer"]) {
                 var result = document.createElement("h3");
@@ -276,8 +274,6 @@ function question4() {
         //makes the 4 buttons work to go to the next question and show the right/wrong answer
         currentChoices.addEventListener("click", function (event){
             event.preventDefault();
-        
-            console.log(event.target.value);
         
             //call next question with right or wrong answer
             if (event.target.value === currentQuestion["answer"]) {
@@ -331,8 +327,6 @@ function question5() {
         currentChoices.addEventListener("click", function (event){
             event.preventDefault();
         
-            console.log(event.target.value);
-        
             //call next question with right or wrong answer
             if (event.target.value === currentQuestion["answer"]) {
                 var result = document.createElement("h3");
@@ -375,7 +369,6 @@ function yourResults() {
     title.textContent = results["title"];
     message.textContent = results["message"];
     initials.textContent = results["enterInitials"];
-    submit.textContent = "Submit";
 
     mainElement.appendChild(finalScore);
     finalScore.appendChild(title);
@@ -387,34 +380,42 @@ function yourResults() {
 
     submit.addEventListener("click", function (event){
         event.preventDefault();
-    
-        
 
         //question 5 is removed
         finalScore.remove();
         headerElement.remove();
-        // result.remove();
+        // h3.remove()
 
-        //calls the test being over
-        highScores()
+        //calls the high scores
+        highScores();
     });
 
 }
 
 function highScores() {
+    //update the DOM by making and appending the elements
     var highScoreLog = document.createElement("section");
 
     var title = document.createElement("h1");
-    var goBack = document.createElement("input");
-    goBack.setAttribute("type", "submit");
-    var clearHighscores = document.createElement("input");
-    clearHighscores.setAttribute("type", "submit");
+    var goBack = document.createElement("button");
+    var clearHighscores = document.createElement("button");
 
     title.textContent = highscores["title"];
     goBack.textContent = highscores.buttons[0];
     clearHighscores.textContent = highscores.buttons[1];
 
     mainElement.appendChild(highScoreLog);
+    highScoreLog.appendChild(title);
+    highScoreLog.appendChild(goBack);
+    highScoreLog.appendChild(clearHighscores);
+
+    
+    goBack.addEventListener("click", function (event){
+        
+    });
+    
+    clearHighscores.addEventListener("click")
+    
 
 
 
