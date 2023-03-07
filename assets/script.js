@@ -5,7 +5,7 @@ var mainElement = document.querySelector("main");
 var headerElement = document.querySelector("header");
 var startQuizButton = document.querySelector("#start-quiz");
 
-
+//array of objects that represent all the questions in the quiz
 var questions = [
     {
         title: "Commonly used data types DO NOT include:", 
